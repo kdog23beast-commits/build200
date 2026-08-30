@@ -2,8 +2,17 @@
   "name": "Driverseat Workout Planner",
   "short_name": "DS Workout",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#080808",
   "theme_color": "#080808",
-  "description": "Driverseat weight gain, workout and progress planner"
+  "description": "Driverseat weight gain, workout and progress planner",
+  "icons": [
+    {
+      "src": "C62298BA-6FFE-40CA-A7F8-BF17D81C7522.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
