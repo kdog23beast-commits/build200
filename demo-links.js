@@ -15,3 +15,38 @@ function personalize(){const c=current(),s=+profile.startWeight,g=+profile.goalW
 function init(){styles();applyDemo();const bar=document.querySelector('.brandbar');if(bar&&!document.getElementById('dsProfileBtn')){const b=document.createElement('button');b.id='dsProfileBtn';b.className='dsProfileBtn';b.type='button';b.textContent='👤 Profile';b.onclick=openProfile;bar.appendChild(b)}personalize();const area=document.getElementById('workoutArea');if(area)new MutationObserver(()=>{applyDemo(area);personalize()}).observe(area,{childList:true,subtree:true});if(!hasProfile())setTimeout(openProfile,250)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+/* Adaptive workout targets: always show a recommendation before editable inputs, for every exercise. */
+(()=>{
+const FACTORS={
+'Incline Dumbbell Press':.19,'Flat Dumbbell Press':.20,'Dumbbell Shoulder Press':.15,'Dumbbell Curl':.11,'Hammer Curl':.11,'Incline Dumbbell Curl':.10,
+'Chest-Supported Row':.38,'Chest-Supported Machine Row':.38,'Seated Cable Row':.38,'Single-Arm Cable Row':.18,'Single-Arm Machine Row':.20,'High Row Machine':.38,
+'Machine Chest Press':.38,'Incline Machine Press':.36,'Machine Incline Press':.36,'Machine Shoulder Press':.28,
+'Lat Pulldown':.38,'Neutral-Grip Lat Pulldown':.38,'Neutral-Grip Pulldown':.38,'Assisted Pull-Up':.30,
+'Cable Lateral Raise':.055,'Dumbbell Lateral Raise':.055,'Lateral Raise':.055,'Cable Y-Raise':.04,
+'Rope Triceps Pushdown':.16,'Straight-Bar Pushdown':.16,'Rope Pushdown':.16,'Overhead Cable Triceps Extension':.14,
+'Cable Curl':.14,'EZ-Bar Curl':.20,'Pec Deck':.25,'Cable Fly':.18,
+'Hack Squat':.65,'Leg Press':.90,'Romanian Deadlift':.55,'Barbell Romanian Deadlift':.55,'Dumbbell Romanian Deadlift':.20,'Bulgarian Split Squat':.15,'Reverse Lunge':.14,
+'Leg Extension':.35,'Single-Leg Extension':.18,'Seated Leg Curl':.30,'Lying Leg Curl':.30,'Leg Curl':.30,'Standing Calf Raise':.55,'Seated Calf Raise':.40,'Calf Raise':.50,
+'Cable Crunch':.30,'Ab Crunch Machine':.30,'Hanging Knee Raise':0
+};
+const BODYWEIGHT=new Set(['Hanging Knee Raise']);
+const DOWN_PROGRESS=new Set(['Assisted Pull-Up']);
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+function profileWeight(){try{const d=JSON.parse(localStorage.getItem('ds_daily')||'[]');if(d.length&&Number.isFinite(+d.at(-1).weight)&&+d.at(-1).weight>0)return +d.at(-1).weight}catch{}try{const p=JSON.parse(localStorage.getItem('ds_profile_v2')||'{}');if(Number.isFinite(+p.currentWeight)&&+p.currentWeight>0)return +p.currentWeight}catch{}return 180}
+function incrementFor(ex){const n=ex.name.toLowerCase();if(n.includes('dumbbell')||n.includes('lateral')||n.includes('curl'))return 5;return 5}
+function roundLoad(value,inc=5){if(value<=0)return 0;return Math.max(inc,Math.round(value/inc)*inc)}
+function starterReps(ex){const key=`${ex.min}-${ex.max}`;return {'6-10':8,'8-10':8,'8-12':10,'10-12':10,'10-15':12,'12-15':12,'12-20':15,'15-20':15}[key]||Math.max(ex.min,Math.min(ex.max,Math.floor((ex.min+ex.max)/2)))}
+function fallbackFactor(name){const n=name.toLowerCase();if(n.includes('lateral')||n.includes('y-raise'))return .055;if(n.includes('curl'))return .12;if(n.includes('triceps')||n.includes('pushdown'))return .15;if(n.includes('pulldown')||n.includes('row'))return .35;if(n.includes('press')&&n.includes('dumbbell'))return .18;if(n.includes('press'))return .35;if(n.includes('leg press'))return .85;if(n.includes('squat'))return .60;if(n.includes('deadlift'))return .50;if(n.includes('leg extension')||n.includes('leg curl'))return .30;if(n.includes('calf'))return .45;if(n.includes('crunch'))return .25;return .20}
+function firstTarget(ex){if(BODYWEIGHT.has(ex.name))return{weight:0,reps:starterReps(ex),source:'estimated'};const factor=own(FACTORS,ex.name)?FACTORS[ex.name]:fallbackFactor(ex.name);return{weight:roundLoad(profileWeight()*factor,incrementFor(ex)),reps:starterReps(ex),source:'estimated'}}
+function doneSets(last){return last?.sets?.filter(s=>s.done&&+s.reps>0)||[]}
+function performanceTarget(ex,last,si){const done=doneSets(last);if(!done.length)return firstTarget(ex);const prev=last.sets?.[si]?.done?last.sets[si]:done[Math.min(si,done.length-1)];const inc=incrementFor(ex),allTop=done.every(s=>+s.reps>=ex.max),anyLow=done.some(s=>+s.reps<ex.min);let weight=Math.max(0,+prev.weight||0),reps=Math.max(0,+prev.reps||0);if(allTop){if(BODYWEIGHT.has(ex.name)){weight=0;reps=ex.max}else{weight=DOWN_PROGRESS.has(ex.name)?Math.max(0,weight-inc):weight+inc;reps=ex.min}}else if(anyLow){reps=Math.max(ex.min,Math.min(ex.max,reps+1))}else{reps=Math.min(ex.max,Math.max(ex.min,reps+1))}return{weight,reps,source:'history'}}
+function targetFor(ex,last,si){return doneSets(last).length?performanceTarget(ex,last,si):firstTarget(ex)}
+function targetText(ex,t){const load=BODYWEIGHT.has(ex.name)?'Bodyweight':`${t.weight} lb`;const source=t.source==='history'?'based on last workout':'profile estimate';return `${load} × ${t.reps} reps · ${source}`}
+function ensureTargetStyles(){if(document.getElementById('dsTargetStyles'))return;const s=document.createElement('style');s.id='dsTargetStyles';s.textContent='.dsSetRecommend{margin:9px 0 4px 41px;color:#ffbf47;font-size:12px;font-weight:750}.dsSetRecommend b{color:#f7f7f7;font-weight:850}@media(max-width:430px){.dsSetRecommend{margin-left:41px}}';document.head.appendChild(s)}
+const originalSuggestion=suggestion;
+suggestion=function(ex,last){const done=doneSets(last);if(!done.length)return `Recommended starting targets are shown before each set and prefilled from your ${Math.round(profileWeight())} lb profile. Adjust only if needed.`;const base=originalSuggestion(ex,last);return `Recommended next targets are shown before each set. ${base}`}
+setHTML=function(ei,si,last){const ex=currentExercises()[ei],k=`${ei}-${si}`,target=targetFor(ex,last,si);draft.sets[k]=draft.sets[k]||{};const v=draft.sets[k];let changed=false;if(!own(v,'weight')){v.weight=target.weight;changed=true}if(!own(v,'reps')){v.reps=target.reps;changed=true}if(changed)localStorage.setItem(DRAFT_KEY,JSON.stringify(draft));const step=incrementFor(ex);return `<div class="dsSetRecommend"><b>Recommended:</b> ${targetText(ex,target)}</div><div class="setrow"><div class="setnum">${si+1}</div><input class="input" data-key="${k}" data-field="weight" type="number" min="0" step="${step}" aria-label="${ex.name} set ${si+1} manual weight" value="${v.weight??''}"><input class="input" data-key="${k}" data-field="reps" type="number" min="1" max="50" aria-label="${ex.name} set ${si+1} manual reps" value="${v.reps??''}"><button class="check ${v.done?'done':''}" data-set="${k}" type="button">${v.done?'✓':'○'}</button></div>`}
+ensureTargetStyles();
+if(typeof renderWorkout==='function'&&localStorage.getItem('ds_profile_v2'))renderWorkout();
+})();
