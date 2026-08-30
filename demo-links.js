@@ -51,14 +51,23 @@ const V={
 'Bulgarian Split Squat':'https://www.youtube.com/watch?v=2C-uNgKwPLE',
 'Reverse Lunge':'https://www.youtube.com/watch?v=u_zSfK5ZFU4'
 };
-function apply(){
- document.querySelectorAll('.exercise').forEach(card=>{
-  const h=card.querySelector('h3'); const a=card.querySelector('a.demo');
+function apply(root=document){
+ root.querySelectorAll('.exercise').forEach(card=>{
+  const h=card.querySelector('h3');
+  const a=card.querySelector('a.demo');
   if(!h||!a) return;
   const url=V[h.textContent.trim()];
-  if(url){a.href=url;a.textContent='▶ Demo';a.dataset.curated='1';}
+  if(!url) return;
+  if(a.href!==url) a.href=url;
+  if(a.dataset.curated!=='1') a.dataset.curated='1';
  });
 }
-apply();
-new MutationObserver(apply).observe(document.documentElement,{childList:true,subtree:true});
+function init(){
+ apply();
+ const area=document.getElementById('workoutArea');
+ if(!area) return;
+ new MutationObserver(()=>apply(area)).observe(area,{childList:true,subtree:true});
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
+else init();
 })();
