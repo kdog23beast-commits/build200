@@ -1,9 +1,9 @@
 {
-  "name": "Build 200 Tracker",
-  "short_name": "Build 200",
+  "name": "Driverseat Workout Planner",
+  "short_name": "DS Workout",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
-  "description": "Weight gain, nutrition, workout and progress tracker"
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "description": "Driverseat weight gain, workout and progress planner"
 }
