@@ -1,73 +1,16 @@
 (()=>{
 const V={
-'Incline Dumbbell Press':'https://www.youtube.com/watch?v=1ChxmaTBQM0',
-'Chest-Supported Row':'https://www.youtube.com/watch?v=uT9mZutc1Zo',
-'Machine Chest Press':'https://www.youtube.com/watch?v=lRo9zZ7EwpM',
-'Lat Pulldown':'https://www.youtube.com/watch?v=CAwf7n6Luuc',
-'Cable Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo',
-'Rope Triceps Pushdown':'https://www.youtube.com/watch?v=GCa8Q4e7laU',
-'Dumbbell Curl':'https://www.youtube.com/watch?v=ykJmrZ5v0Oo',
-'Incline Machine Press':'https://www.youtube.com/watch?v=lRo9zZ7EwpM',
-'Single-Arm Cable Row':'https://www.youtube.com/watch?v=SqlsitqMeMs',
-'Flat Dumbbell Press':'https://www.youtube.com/watch?v=pKZMNVbfUzQ',
-'Neutral-Grip Lat Pulldown':'https://www.youtube.com/watch?v=KgZqDuNx7rI',
-'Dumbbell Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo',
-'Overhead Cable Triceps Extension':'https://www.youtube.com/watch?v=_gsUck-7M74',
-'Hammer Curl':'https://www.youtube.com/watch?v=TwD-YGVP4Bk',
-'Seated Cable Row':'https://www.youtube.com/watch?v=sP_4vybjVJs',
-'Assisted Pull-Up':'https://www.youtube.com/watch?v=3YvfRx31xDE',
-'Straight-Bar Pushdown':'https://www.youtube.com/watch?v=GCa8Q4e7laU',
-'EZ-Bar Curl':'https://www.youtube.com/watch?v=H0dtbu_Bi8c',
-'Machine Incline Press':'https://www.youtube.com/watch?v=lRo9zZ7EwpM',
-'Chest-Supported Machine Row':'https://www.youtube.com/watch?v=uT9mZutc1Zo',
-'Cable Fly':'https://www.youtube.com/watch?v=Iwe6AmxVf7o',
-'Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo',
-'Rope Pushdown':'https://www.youtube.com/watch?v=GCa8Q4e7laU',
-'Cable Curl':'https://www.youtube.com/watch?v=NFzTWp2qpiE',
-'Hack Squat':'https://www.youtube.com/watch?v=bhfyY8F8F24',
-'Romanian Deadlift':'https://www.youtube.com/watch?v=JCXUYuzwNrM',
-'Leg Extension':'https://www.youtube.com/watch?v=YyvSfVjQeL0',
-'Seated Leg Curl':'https://www.youtube.com/watch?v=ELOCsoDSmrg',
-'Standing Calf Raise':'https://www.youtube.com/watch?v=gwLzBJYoWlI',
-'Cable Crunch':'https://www.youtube.com/watch?v=AV5PmZJIrrw',
-'Leg Press':'https://www.youtube.com/watch?v=cDGOn-yfKJA',
-'Dumbbell Romanian Deadlift':'https://www.youtube.com/watch?v=JCXUYuzwNrM',
-'Single-Leg Extension':'https://www.youtube.com/watch?v=YyvSfVjQeL0',
-'Lying Leg Curl':'https://www.youtube.com/watch?v=lUH80pneL5w',
-'Seated Calf Raise':'https://www.youtube.com/watch?v=JbyjNymZOt0',
-'Ab Crunch Machine':'https://www.youtube.com/watch?v=AV5PmZJIrrw',
-'Barbell Romanian Deadlift':'https://www.youtube.com/watch?v=JCXUYuzwNrM',
-'Hanging Knee Raise':'https://www.youtube.com/watch?v=hdng3Nm1x_E',
-'Leg Curl':'https://www.youtube.com/watch?v=lUH80pneL5w',
-'Calf Raise':'https://www.youtube.com/watch?v=gwLzBJYoWlI',
-'Neutral-Grip Pulldown':'https://www.youtube.com/watch?v=KgZqDuNx7rI',
-'Machine Shoulder Press':'https://www.youtube.com/watch?v=Wqq43dKW1TU',
-'Pec Deck':'https://www.youtube.com/watch?v=Z57CtFmRMxA',
-'High Row Machine':'https://www.youtube.com/watch?v=beKbbq6NhWY',
-'Dumbbell Shoulder Press':'https://www.youtube.com/watch?v=nHboL27_Sn0',
-'Cable Y-Raise':'https://www.youtube.com/watch?v=7C8mL0v976o',
-'Incline Dumbbell Curl':'https://www.youtube.com/watch?v=HhHHBj3qTJ4',
-'Single-Arm Machine Row':'https://www.youtube.com/watch?v=beKbbq6NhWY',
-'Bulgarian Split Squat':'https://www.youtube.com/watch?v=2C-uNgKwPLE',
-'Reverse Lunge':'https://www.youtube.com/watch?v=u_zSfK5ZFU4'
-};
-function apply(root=document){
- root.querySelectorAll('.exercise').forEach(card=>{
-  const h=card.querySelector('h3');
-  const a=card.querySelector('a.demo');
-  if(!h||!a) return;
-  const url=V[h.textContent.trim()];
-  if(!url) return;
-  if(a.href!==url) a.href=url;
-  if(a.dataset.curated!=='1') a.dataset.curated='1';
- });
-}
-function init(){
- apply();
- const area=document.getElementById('workoutArea');
- if(!area) return;
- new MutationObserver(()=>apply(area)).observe(area,{childList:true,subtree:true});
-}
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
-else init();
+'Incline Dumbbell Press':'https://www.youtube.com/watch?v=1ChxmaTBQM0','Chest-Supported Row':'https://www.youtube.com/watch?v=uT9mZutc1Zo','Machine Chest Press':'https://www.youtube.com/watch?v=lRo9zZ7EwpM','Lat Pulldown':'https://www.youtube.com/watch?v=CAwf7n6Luuc','Cable Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo','Rope Triceps Pushdown':'https://www.youtube.com/watch?v=GCa8Q4e7laU','Dumbbell Curl':'https://www.youtube.com/watch?v=ykJmrZ5v0Oo','Incline Machine Press':'https://www.youtube.com/watch?v=lRo9zZ7EwpM','Single-Arm Cable Row':'https://www.youtube.com/watch?v=SqlsitqMeMs','Flat Dumbbell Press':'https://www.youtube.com/watch?v=pKZMNVbfUzQ','Neutral-Grip Lat Pulldown':'https://www.youtube.com/watch?v=KgZqDuNx7rI','Dumbbell Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo','Overhead Cable Triceps Extension':'https://www.youtube.com/watch?v=_gsUck-7M74','Hammer Curl':'https://www.youtube.com/watch?v=TwD-YGVP4Bk','Seated Cable Row':'https://www.youtube.com/watch?v=sP_4vybjVJs','Assisted Pull-Up':'https://www.youtube.com/watch?v=3YvfRx31xDE','Straight-Bar Pushdown':'https://www.youtube.com/watch?v=GCa8Q4e7laU','EZ-Bar Curl':'https://www.youtube.com/watch?v=H0dtbu_Bi8c','Machine Incline Press':'https://www.youtube.com/watch?v=lRo9zZ7EwpM','Chest-Supported Machine Row':'https://www.youtube.com/watch?v=uT9mZutc1Zo','Cable Fly':'https://www.youtube.com/watch?v=Iwe6AmxVf7o','Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo','Rope Pushdown':'https://www.youtube.com/watch?v=GCa8Q4e7laU','Cable Curl':'https://www.youtube.com/watch?v=NFzTWp2qpiE','Hack Squat':'https://www.youtube.com/watch?v=bhfyY8F8F24','Romanian Deadlift':'https://www.youtube.com/watch?v=JCXUYuzwNrM','Leg Extension':'https://www.youtube.com/watch?v=YyvSfVjQeL0','Seated Leg Curl':'https://www.youtube.com/watch?v=ELOCsoDSmrg','Standing Calf Raise':'https://www.youtube.com/watch?v=gwLzBJYoWlI','Cable Crunch':'https://www.youtube.com/watch?v=AV5PmZJIrrw','Leg Press':'https://www.youtube.com/watch?v=cDGOn-yfKJA','Dumbbell Romanian Deadlift':'https://www.youtube.com/watch?v=JCXUYuzwNrM','Single-Leg Extension':'https://www.youtube.com/watch?v=YyvSfVjQeL0','Lying Leg Curl':'https://www.youtube.com/watch?v=lUH80pneL5w','Seated Calf Raise':'https://www.youtube.com/watch?v=JbyjNymZOt0','Ab Crunch Machine':'https://www.youtube.com/watch?v=AV5PmZJIrrw','Barbell Romanian Deadlift':'https://www.youtube.com/watch?v=JCXUYuzwNrM','Hanging Knee Raise':'https://www.youtube.com/watch?v=hdng3Nm1x_E','Leg Curl':'https://www.youtube.com/watch?v=lUH80pneL5w','Calf Raise':'https://www.youtube.com/watch?v=gwLzBJYoWlI','Neutral-Grip Pulldown':'https://www.youtube.com/watch?v=KgZqDuNx7rI','Machine Shoulder Press':'https://www.youtube.com/watch?v=Wqq43dKW1TU','Pec Deck':'https://www.youtube.com/watch?v=Z57CtFmRMxA','High Row Machine':'https://www.youtube.com/watch?v=beKbbq6NhWY','Dumbbell Shoulder Press':'https://www.youtube.com/watch?v=nHboL27_Sn0','Cable Y-Raise':'https://www.youtube.com/watch?v=7C8mL0v976o','Incline Dumbbell Curl':'https://www.youtube.com/watch?v=HhHHBj3qTJ4','Single-Arm Machine Row':'https://www.youtube.com/watch?v=beKbbq6NhWY','Bulgarian Split Squat':'https://www.youtube.com/watch?v=2C-uNgKwPLE','Reverse Lunge':'https://www.youtube.com/watch?v=u_zSfK5ZFU4'};
+const PROFILE_KEY='ds_profile_v1';
+let profile=JSON.parse(localStorage.getItem(PROFILE_KEY)||'null');
+function applyDemo(root=document){root.querySelectorAll('.exercise').forEach(card=>{const h=card.querySelector('h3'),a=card.querySelector('a.demo');if(!h||!a)return;const url=V[h.textContent.trim()];if(url&&a.href!==url)a.href=url;if(url)a.dataset.curated='1';});}
+function calories(p){const mult={low:13,light:14,moderate:15,high:16}[p.activity]||15;let c=p.currentWeight*mult;if(p.goalType==='gain')c+=300;if(p.goalType==='lose')c-=400;if(p.goalType==='recomp')c-=100;return Math.max(1200,Math.round(c/50)*50);}
+function goalLabel(g){return {gain:'Gain Muscle',lose:'Lose Fat',maintain:'Maintain',recomp:'Recomp'}[g]||'Personal Goal';}
+function guidance(p){if(p.goalType==='gain')return 'Build strength and muscle with progressive overload. Keep most sets 1–3 reps from failure and use easy cardio for recovery.';if(p.goalType==='lose')return 'Keep lifting heavy enough to preserve strength. Use a modest calorie deficit, higher daily steps, and reduce volume only if recovery drops.';if(p.goalType==='recomp')return 'Prioritize progressive overload, high-quality reps, and steady bodyweight trends. Use measurements and strength gains alongside the scale.';return 'Train consistently, progress when form is solid, and keep calories near maintenance.';}
+function splitText(p){const d=Math.max(2,Math.min(4,+p.trainingDays||4));if(d===2)return '2-day full-body emphasis using Upper 1 and Lower 1.';if(d===3)return '3-day rotation using Upper 1, Lower 1, and Upper 2.';return '4-day upper/lower rotation with progressive overload and exercise variation.';}
+function addStyles(){if(document.getElementById('ds-profile-style'))return;const s=document.createElement('style');s.id='ds-profile-style';s.textContent=`.dsProfileBtn{margin-left:auto;background:#191919;border:1px solid #3a3a3a;color:#fff;border-radius:999px;padding:9px 12px;font-weight:800;font-size:12px}.dsOverlay{position:fixed;inset:0;z-index:999;background:#080808;overflow:auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}.dsSetup{max-width:620px;margin:auto}.dsSetup h1{font-size:30px;margin:10px 0 6px}.dsSetup .lead{color:#aaa;margin-bottom:18px}.dsSetup .box{background:#141414;border:1px solid #333;border-radius:18px;padding:16px}.dsSetup label{display:block;margin:12px 0 5px;color:#bbb;font-size:13px;font-weight:700}.dsSetup input,.dsSetup select{width:100%;background:#202020;border:1px solid #3b3b3b;color:#fff;border-radius:11px;padding:13px;font-size:16px}.dsSetup .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.dsSetup .save{width:100%;margin-top:16px;background:#ff3038;color:#fff;border:0;border-radius:12px;padding:14px;font-weight:900;font-size:16px}.dsSetup .hint{color:#888;font-size:12px;margin-top:10px}.dsGoalTag{display:inline-block;color:#ff5960;border:1px solid #5b2529;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;margin-top:6px}@media(max-width:430px){.dsSetup .two{grid-template-columns:1fr}}`;document.head.appendChild(s);}
+function showSetup(edit=false){addStyles();document.getElementById('dsOverlay')?.remove();const p=profile||{name:'',currentWeight:180,goalWeight:200,goalType:'gain',activity:'moderate',trainingDays:4,equipment:'full'};const o=document.createElement('div');o.id='dsOverlay';o.className='dsOverlay';o.innerHTML=`<div class="dsSetup"><img src="C62298BA-6FFE-40CA-A7F8-BF17D81C7522.png" alt="" style="width:64px;height:64px;border-radius:16px"><h1>${edit?'Edit your plan':'Build your plan'}</h1><div class="lead">Set your starting point and Driverseat will personalize your dashboard, calories, and training structure.</div><form class="box" id="dsProfileForm"><label>Name</label><input name="name" value="${p.name||''}" placeholder="Your name" required><div class="two"><div><label>Current weight (lb)</label><input name="currentWeight" type="number" step="0.1" min="70" max="700" value="${p.currentWeight||180}" required></div><div><label>Goal weight (lb)</label><input name="goalWeight" type="number" step="0.1" min="70" max="700" value="${p.goalWeight||200}" required></div></div><label>Primary goal</label><select name="goalType"><option value="gain" ${p.goalType==='gain'?'selected':''}>Gain muscle / weight</option><option value="lose" ${p.goalType==='lose'?'selected':''}>Lose fat / weight</option><option value="maintain" ${p.goalType==='maintain'?'selected':''}>Maintain</option><option value="recomp" ${p.goalType==='recomp'?'selected':''}>Recomp</option></select><label>Activity level</label><select name="activity"><option value="low" ${p.activity==='low'?'selected':''}>Low</option><option value="light" ${p.activity==='light'?'selected':''}>Light</option><option value="moderate" ${p.activity==='moderate'?'selected':''}>Moderate</option><option value="high" ${p.activity==='high'?'selected':''}>High</option></select><div class="two"><div><label>Training days/week</label><select name="trainingDays"><option value="2" ${+p.trainingDays===2?'selected':''}>2 days</option><option value="3" ${+p.trainingDays===3?'selected':''}>3 days</option><option value="4" ${+p.trainingDays===4?'selected':''}>4 days</option></select></div><div><label>Equipment</label><select name="equipment"><option value="full" ${p.equipment==='full'?'selected':''}>Full gym</option><option value="dumbbells" ${p.equipment==='dumbbells'?'selected':''}>Dumbbells</option><option value="home" ${p.equipment==='home'?'selected':''}>Home / limited</option></select></div></div><button class="save" type="submit">${edit?'Save Changes':'Create My Plan'}</button><div class="hint">This first version saves your profile on this device. Secure login and cloud sync are the next backend step.</div></form></div>`;document.body.appendChild(o);o.querySelector('form').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);profile={name:String(f.get('name')).trim(),currentWeight:+f.get('currentWeight'),goalWeight:+f.get('goalWeight'),goalType:String(f.get('goalType')),activity:String(f.get('activity')),trainingDays:+f.get('trainingDays'),equipment:String(f.get('equipment'),),updatedAt:new Date().toISOString()};localStorage.setItem(PROFILE_KEY,JSON.stringify(profile));o.remove();personalize();});}
+function personalize(){if(!profile)return;const cals=calories(profile);const metricCards=[...document.querySelectorAll('#home .metrics .card')];if(metricCards[0]){metricCards[0].querySelector('.muted').textContent='Current Weight';metricCards[0].querySelector('.metric').textContent=profile.currentWeight.toFixed(1)+' lb';}if(metricCards[2])metricCards[2].querySelector('.metric').textContent=cals.toLocaleString();if(metricCards[3]){metricCards[3].querySelector('.muted').textContent='To Goal';metricCards[3].querySelector('.metric').textContent=Math.abs(profile.goalWeight-profile.currentWeight).toFixed(1)+' lb';}const milestones=document.querySelector('.milestones');if(milestones){const a=profile.currentWeight,b=profile.goalWeight;milestones.innerHTML=[.25,.5,.75,1].map(x=>`<span class="pill">${(a+(b-a)*x).toFixed(0)}</span>`).join('');}const gp=document.querySelector('#home .card .row b:first-child');if(gp)gp.textContent=goalLabel(profile.goalType)+' Progress';const guide=document.getElementById('guide');if(guide)guide.textContent=guidance(profile);const split=[...document.querySelectorAll('#home .card h3')].find(x=>x.textContent==='Training Split')?.parentElement?.querySelector('.muted');if(split)split.textContent=splitText(profile);const cal=document.getElementById('cal');if(cal&&!cal.dataset.userTouched){cal.value=cals;}const settings=document.querySelector('#settings .card');if(settings&&!document.getElementById('dsProfileCard')){const d=document.createElement('div');d.id='dsProfileCard';d.innerHTML=`<div style="border-top:1px solid #333;margin-top:16px;padding-top:16px"><b>${profile.name||'Your Profile'}</b><div class="dsGoalTag">${goalLabel(profile.goalType)}</div><p class="muted small">${profile.currentWeight} lb → ${profile.goalWeight} lb · ${profile.trainingDays} training days/week · ${cals.toLocaleString()} calorie starting target</p><button class="btn secondary" id="dsEditProfile" type="button">Edit Profile & Goal</button></div>`;settings.appendChild(d);d.querySelector('#dsEditProfile').addEventListener('click',()=>showSetup(true));}const tabs=[...document.querySelectorAll('#workoutTabs .tab')];tabs.forEach((t,i)=>t.style.display=i<Math.max(2,Math.min(4,profile.trainingDays))?'':'none');}
+function init(){addStyles();applyDemo();const bar=document.querySelector('.brandbar');if(bar&&!document.getElementById('dsProfileBtn')){const b=document.createElement('button');b.id='dsProfileBtn';b.className='dsProfileBtn';b.type='button';b.textContent=profile?.name?profile.name:'Profile';b.addEventListener('click',()=>showSetup(!!profile));bar.appendChild(b);}const area=document.getElementById('workoutArea');if(area)new MutationObserver(()=>{applyDemo(area);personalize();}).observe(area,{childList:true,subtree:true});if(profile)personalize();else showSetup(false);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
