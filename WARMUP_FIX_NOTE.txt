@@ -1,1 +1,0 @@
-Warm-up/cardio module is now loaded from yoga.js, which is already confirmed active in the live app. This avoids relying on service-worker response rewriting for workout prep rendering.
