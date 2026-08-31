@@ -31,3 +31,4 @@ function draw(){ensure();const r=$('dsYogaRoot');if(!r)return;const p=prof();if(
 function init(){css();ensure();draw();const q=document.querySelector('.quick');if(q&&!q.querySelector('[data-go-yoga]')){const b=document.createElement('button');b.className='action';b.type='button';b.dataset.goYoga='1';b.innerHTML='<b>🧘</b>Yoga';q.appendChild(b);b.onclick=()=>document.querySelector('.nav [data-v="yoga"]')?.click()}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+import('./warmup-cardio.js?v=23').catch(()=>{});
