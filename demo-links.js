@@ -36,7 +36,7 @@ function addExtendedPlans(){if(plans.length>=7)return;const X=(name,sets,min,max
 [X('Machine Chest Press',2,8,12),X('Neutral-Grip Pulldown',2,8,12),X('Leg Press',2,8,12),X('Romanian Deadlift',2,8,10),X('Lateral Raise',2,12,20),X('Cable Curl',2,10,15),X('Rope Pushdown',2,10,15)],
 [X('Cable Fly',2,12,15),X('Seated Cable Row',2,10,12),X('Leg Extension',2,12,15),X('Leg Curl',2,12,15),X('Lateral Raise',2,15,20),X('Cable Curl',2,12,15),X('Rope Pushdown',2,12,15)]
 ];
-const upper3=plans[0].weeks.map(w=>w.map(e=>({...e}))),lower3=plans[1].weeks.map(w=>w.map(e=>({...e}));
+const upper3=plans[0].weeks.map(w=>w.map(e=>({...e}))),lower3=plans[1].weeks.map(w=>w.map(e=>({...e})));
 plans.push({name:'Full Body',weeks:fullBody});plans.push({name:'Upper 3',weeks:upper3});plans.push({name:'Lower 3',weeks:lower3});
 }
 function visiblePlanIndexes(){const d=trainingDays(),base=Array.from({length:d},(_,i)=>i),opt=optionalPlanIndex();return [...base,opt].filter((v,i,a)=>a.indexOf(v)===i&&v<plans.length)}
